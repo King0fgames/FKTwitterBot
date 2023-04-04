@@ -1,12 +1,16 @@
 #	FKTwitter Discord Bot
 #	Author: King0fgames
-#	Ver: 1.2.0
-#	Last update: 4/3/23
+#	Ver: 1.3.0
+#	Last update: 4/4/23
+#	Source: https://github.com/King0fgames/FKTwitterBot
 
 import json
 import interactions
 import validators
 from urllib.parse import urlparse, urlunparse
+
+# enables url parse debugging
+debug = False
 
 # Get configuration.json
 with open("configuration.json", "r") as config: 
@@ -27,12 +31,12 @@ class Site:
 
 #Site objects (inputs, output, embed, del_query)
 nitter = Site(
-    ("twitter.com", "vxtwitter.com", "nitter.net"),
-    "nitter.it",
+    ("twitter.com", "mobile.twitter.com", "vxtwitter.com"),
+    "nitter.net",
 	embed = False
 )
 vxtwitter = Site(
-    ("twitter.com", "nitter.it", "nitter.net"),
+    ("twitter.com", "mobile.twitter.com", "nitter.net"),
     "vxtwitter.com"
 )
 libreddit = Site(
@@ -74,6 +78,7 @@ async def nitter_replace(ctx: interactions.CommandContext, twitter_link: str):
 async def nitter_replace(ctx):
 	link = ctx.target.content
 	await replace_url(ctx, link, nitter)
+	
 
 
 # VXTwitter Slash Command
@@ -159,14 +164,14 @@ async def invidious_replace(ctx):
     description="Convert to ProxiTok, alternative TikTok front-end",
 	options = [
         interactions.Option(
-            name="youtube_link",
+            name="tiktok_link",
             description="tiktok.com link",
             type=interactions.OptionType.STRING,
             required=True,
 		),
 	],
 )
-async def invidious_replace(ctx: interactions.CommandContext, tiktok_link: str):
+async def proxitok_replace(ctx: interactions.CommandContext, tiktok_link: str):
 	await replace_url(ctx, tiktok_link, proxitok)
 
 # ProxiTok Context Menu Command
@@ -183,6 +188,12 @@ async def replace_url(ctx, link: str, site: Site):
 	
 	#url validation
 	url = urlparse(link)
+
+	#url parse debugging, apparently python's urllib doesn't support .it extensions
+	if(debug):
+		print("Validating:\nscheme: " + url.scheme + "\nnetloc: " + url.netloc + "\npath: " 
+				+ url.path + "\nquery:" + url.query + "\nfragment:" + url.fragment)
+	
 	if(url.netloc in site.inputs and (validators.url(link))):
 
 		#replace query string, usually tracking garbage
@@ -200,7 +211,8 @@ async def replace_url(ctx, link: str, site: Site):
 			await ctx.send(f'<{new_link}>')
 	#Failure message		
 	else:
-		await ctx.send("Not a valid URL", ephemeral=True)
+		await ctx.send(f"Invalid URL, accepted URLS: ".join(site.inputs), ephemeral=True)
 
 print("FKTwitter Bot starting")
 bot.start()
+print("FKTwitter Bot shutting down")
