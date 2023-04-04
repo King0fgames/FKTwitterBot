@@ -21,7 +21,7 @@ constantly==15.1.0
 cryptography==40.0.1
 dbus-python==1.2.18
 decorator==5.1.1
-discord-py-interactions==4.4.0
+discord-py-interactions==4.3.3
 distro==1.8.0
 distro-info==1.0
 docutils==0.19

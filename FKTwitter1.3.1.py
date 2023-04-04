@@ -1,6 +1,6 @@
 #	FKTwitter Discord Bot
 #	Author: King0fgames
-#	Ver: 1.3.0
+#	Ver: 1.3.1
 #	Last update: 4/4/23
 #	Source: https://github.com/King0fgames/FKTwitterBot
 
@@ -11,6 +11,10 @@ from urllib.parse import urlparse, urlunparse
 
 # enables url parse debugging
 debug = False
+if(debug):
+	import logging
+	logging.basicConfig(filename="debug.txt", level=logging.DEBUG)
+
 
 # Get configuration.json
 with open("configuration.json", "r") as config: 
@@ -32,11 +36,11 @@ class Site:
 #Site objects (inputs, output, embed, del_query)
 nitter = Site(
     ("twitter.com", "mobile.twitter.com", "vxtwitter.com"),
-    "nitter.net",
+    "nitter.it",
 	embed = False
 )
 vxtwitter = Site(
-    ("twitter.com", "mobile.twitter.com", "nitter.net"),
+    ("twitter.com", "mobile.twitter.com", "nitter.net", "nitter.it"),
     "vxtwitter.com"
 )
 libreddit = Site(
@@ -189,7 +193,7 @@ async def replace_url(ctx, link: str, site: Site):
 	#url validation
 	url = urlparse(link)
 
-	#url parse debugging, apparently python's urllib doesn't support .it extensions
+	#url parse debugging
 	if(debug):
 		print("Validating:\nscheme: " + url.scheme + "\nnetloc: " + url.netloc + "\npath: " 
 				+ url.path + "\nquery:" + url.query + "\nfragment:" + url.fragment)
@@ -208,10 +212,12 @@ async def replace_url(ctx, link: str, site: Site):
 		if site.embed: #default = True
 			await ctx.send(f'{new_link}')
 		else:
-			await ctx.send(f'<{new_link}>')
+			await ctx.send(f'{new_link}', suppress_embeds=True)
+			
 	#Failure message		
 	else:
-		await ctx.send(f"Invalid URL, accepted URLS: ".join(site.inputs), ephemeral=True)
+		error_message = "Invalid URL, accepted URLs:\n" + '\n'.join(site.inputs)
+		await ctx.send(error_message, ephemeral=True)
 
 print("FKTwitter Bot starting")
 bot.start()
