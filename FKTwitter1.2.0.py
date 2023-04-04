@@ -169,7 +169,7 @@ async def invidious_replace(ctx):
 async def invidious_replace(ctx: interactions.CommandContext, tiktok_link: str):
 	await replace_url(ctx, tiktok_link, proxitok)
 
-#ProxiTok Context Menu Command
+# ProxiTok Context Menu Command
 @bot.command(
     name="TikTok -> ProxiTok",
 	type=interactions.ApplicationCommandType.MESSAGE,	
