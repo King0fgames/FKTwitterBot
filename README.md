@@ -22,4 +22,6 @@ Permissions:
 - Embed Links
 - Use Slash Commands
 
-Permissions Integer: 277025410048
+Permissions Integer: 277025410048  
+
+[Support Server](https://discord.gg/2JGnMHGSx3)
