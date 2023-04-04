@@ -1,3 +1,4 @@
+![fucktwitter](https://user-images.githubusercontent.com/22490079/229778374-78e02b55-99ab-4e45-ae12-4589889e705f.png)
 # FKTwitterBot
 Discord bot to convert social media links to privacy-oriented alternative front-ends
 
