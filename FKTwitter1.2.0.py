@@ -1,7 +1,7 @@
 #	FKTwitter Discord Bot
 #	Author: King0fgames
-#	Ver: 1.1.0
-#	Last update: 9/10/22
+#	Ver: 1.2.0
+#	Last update: 4/3/23
 
 import json
 import interactions
@@ -37,11 +37,7 @@ vxtwitter = Site(
 )
 libreddit = Site(
     ("www.reddit.com","old.reddit.com", "reddit.com"),
-    "libredd.it"
-)
-bibliogram = Site(
-    ("www.instagram.com", "instagram.com"),
-    "bibliogram.art"
+    "r.nf"
 )
 invidious = Site(
     ("www.youtube.com", "youtube.com", "youtu.be"),
@@ -131,33 +127,6 @@ async def libreddit_replace(ctx):
 	link = ctx.target.content
 	await replace_url(ctx, link, libreddit)
 
-
-# Bibliogram Slash Command
-@bot.command(
-    name="bibliogram",
-    description="Convert to Bibliogram, alternative Instagram front-end",
-	options = [
-        interactions.Option(
-            name="instagram_link",
-            description="instagram.com",
-            type=interactions.OptionType.STRING,
-            required=True,
-		),
-	],
-)
-async def bibliogram_replace(ctx: interactions.CommandContext, instagram_link: str):
-	await replace_url(ctx, instagram_link, bibliogram)
-
-# Bibliogram Context Menu Command
-@bot.command(
-    name="Instagram -> Bibliogram",
-	type=interactions.ApplicationCommandType.MESSAGE,	
-)
-async def bibliogram_replace(ctx):
-	link = ctx.target.content	
-	await replace_url(ctx, link, bibliogram)
-
-
 # Invidious Slash Command
 @bot.command(
     name="invidious",
@@ -200,14 +169,14 @@ async def invidious_replace(ctx):
 async def invidious_replace(ctx: interactions.CommandContext, tiktok_link: str):
 	await replace_url(ctx, tiktok_link, proxitok)
 
-# ProxiTok Context Menu Command - disabled because of 5 command limit
-#@bot.command(
-#    name="TikTok -> ProxiTok",
-#	type=interactions.ApplicationCommandType.MESSAGE,	
-#)
-#async def proxitok_replace(ctx):
-#	link = ctx.target.content	
-#	await replace_url(ctx, link, proxitok)
+#ProxiTok Context Menu Command
+@bot.command(
+    name="TikTok -> ProxiTok",
+	type=interactions.ApplicationCommandType.MESSAGE,	
+)
+async def proxitok_replace(ctx):
+	link = ctx.target.content	
+	await replace_url(ctx, link, proxitok)
 
 # Validate, replace, and send new url
 async def replace_url(ctx, link: str, site: Site):
