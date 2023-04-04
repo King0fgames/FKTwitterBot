@@ -5,9 +5,8 @@ Discord bot to convert social media links to privacy-oriented alternative front-
 
 - Twitter -> https://nitter.it ~ [Nitter](https://github.com/zedeus/nitter) (embeds disabled)
 - Twitter -> https://vxtwitter.com ~ [BetterTwitFix](https://github.com/dylanpdx/BetterTwitFix) (for fixing twitter embeds)
-- Reddit -> https://libredd.it ~ [Libreddit](https://github.com/spikecodes/libreddit)
+- Reddit -> https://r.nf ~ [Libreddit](https://github.com/spikecodes/libreddit)
 - Youtube -> https://yewtu.be ~ [Invidious](https://github.com/iv-org/invidious)
-- Instagram -> https://bibliogram.art ~ [Bibliogram](https://sr.ht/~cadence/bibliogram/)
 - Tiktok -> https://proxitok.pabloferreiro.es ~ [ProxiTok](https://github.com/pablouser1/ProxiTok) 
 
 Slash commands available for all, Context menu (right click) commands for all except ProxiTok due to Discord's limit
