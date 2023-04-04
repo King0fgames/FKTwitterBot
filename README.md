@@ -9,7 +9,7 @@ Discord bot to convert social media links to privacy-oriented alternative front-
 - Youtube -> https://yewtu.be ~ [Invidious](https://github.com/iv-org/invidious)
 - Tiktok -> https://proxitok.pabloferreiro.es ~ [ProxiTok](https://github.com/pablouser1/ProxiTok) 
 
-Slash commands available for all, Context menu (right click) commands for all except ProxiTok due to Discord's limit
+Slash commands and context menu (right click on link) available for all
 
 Scopes:
 - bot
